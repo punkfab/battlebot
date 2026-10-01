@@ -1,0 +1,18 @@
+[project]
+name = "battlebot"
+version = "0.0.0"
+description = "punkfab antweight demo platform — parametric CAD, sim gates, design for robotic assembly."
+requires-python = ">=3.12"
+dependencies = [
+    "build123d>=0.8",   # parametric CAD (cad/)
+    "mujoco>=3.2",      # duel sim (sim/)
+    "trimesh>=4",       # meshes for the interference gates
+    "manifold3d>=2",    # boolean engine behind software-mfg's interference checker
+    "numpy>=1.26",
+    "pyyaml>=6",        # spokes.yaml
+    "imageio>=2",       # sim gifs
+    "lib3mf>=2.3",      # 3MF output (featuretree threemf_emit)
+]
+
+[tool.uv]
+package = false

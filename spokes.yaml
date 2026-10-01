@@ -1,0 +1,34 @@
+# Other punkfab repos composed BY REFERENCE — never forked or copied.
+#
+# (Same discipline as autobot/cells.yaml and software-mfg/cells.yaml. Named "spokes" here
+# because in this repo the word CELL is reserved for BUILD cells — factory stations. See BRIEF.md.)
+#
+# Resolved by cad/spokes.py; env var BATTLEBOT_<NAME> (upper, - -> _) overrides a path.
+
+spokes:
+  software-mfg:
+    path: ../software-mfg
+    provides:
+      interference: sim/interference.py        # solid overlap + swept-collision checker (mm, manifold3d)
+      opgraph: orchestration/opgraph.py        # op DAG + resource scheduler (the assembly recipe runs on it)
+
+  featuretree:
+    path: ../featuretree
+    syspath: true                              # its modules import each other by name
+    provides:
+      assembly_ir: assembly_ir.py              # the assembly IR (occurrences, mates, loop closures)
+      assembly_kin: assembly_kin.py            # pose solver (closed loops)
+      mjcf_emit: mjcf_emit.py                  # assembly IR -> MuJoCo
+      threemf_emit: threemf_emit.py            # assembly IR -> 3MF (assembly package + print plates)
+
+  buildcell:
+    path: ../buildcell
+    note: build cells (factory stations). Placeholder; the battlebot recipe names the cell TYPES it needs.
+
+  robot-locomotion:
+    path: ../robot-locomotion
+    note: skid-steer drive belongs there as a new modality (TODO) — today the wheel lives in cad/parts.py.
+
+  robot-bom:
+    path: ../robot-bom
+    note: antweight parts (N20, micro servo, 2S LiPo) are staged in cad/bom.py until robot-bom/antweight/ lands.
